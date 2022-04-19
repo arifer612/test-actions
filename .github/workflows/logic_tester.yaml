@@ -13,6 +13,7 @@ on:
       bool_val:
         type: boolean
         required: true
+        default: false
 
 jobs:
   docs:
@@ -32,10 +33,14 @@ jobs:
       - name: Echo boolean input
         run: echo ${{ inputs.bool_val }}
 
-      - name: Test boolean input, if ${{ inputs.bool_val == true }}
-        if: ${{ inputs.bool_val == true }}
-        run: echo ${{ inputs.bool_val }}
+      - name: Test boolean input, if ${{ inputs.bool_val == 'false' }}
+        if: ${{ inputs.bool_val == 'false' }}
+        run: echo yay
 
-      - name: Test boolean input, if inputs.bool_val == true
-        if: inputs.bool_val == true
-        run: echo ${{ inputs.bool_val }}
+      - name: Test boolean input, if inputs.bool_val == 'false'
+        if: inputs.bool_val == 'false'
+        run: echo yay
+
+      - name: Test boolean input, if ( inputs.bool_val == 'false' )
+        if: ( inputs.bool_val == 'false' )
+        run: echo yay
