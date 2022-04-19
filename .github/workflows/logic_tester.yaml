@@ -27,20 +27,23 @@ jobs:
           echo "::set-output name=name::${{ inputs.name }}"; else
           echo "::set-output name=name::${{ github.actor }}"; fi
 
+        # This will echo the inputs.name that it is fed, or github.actor if not fed.
       - name: Echo empty string variable
         run: echo ${{ steps.handler.outputs.name }}
 
+
+        # Testing booleans
       - name: Echo boolean input
-        run: echo ${{ inputs.bool_val }}
+        run: echo ${{ github.event.inputs.bool_val }}
 
-      - name: Test boolean input, if ${{ inputs.bool_val == 'false' }}
-        if: ${{ inputs.bool_val == 'false' }}
+      - name: Test boolean input, if ${{ github.event.inputs.bool_val == 'false' }}
+        if: ${{ github.event.inputs.bool_val == 'false' }}
         run: echo yay
 
-      - name: Test boolean input, if inputs.bool_val == 'false'
-        if: inputs.bool_val == 'false'
+      - name: Test boolean input, if github.event.inputs.bool_val == 'false'
+        if: github.event.inputs.bool_val == 'false'
         run: echo yay
 
-      - name: Test boolean input, if ( inputs.bool_val == 'false' )
-        if: ( inputs.bool_val == 'false' )
+      - name: Test boolean input, if ( github.event.inputs.bool_val == 'false' )
+        if: ( github.event.inputs.bool_val == 'false' )
         run: echo yay
