@@ -12,7 +12,7 @@ on:
         default: ''
       bool_val:
         type: boolean
-        required: true
+        required: false
         default: false
 
 jobs:
