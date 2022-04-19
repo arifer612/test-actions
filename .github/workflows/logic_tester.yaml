@@ -7,6 +7,11 @@ on:
         type: string
         required: false
         default: ''
+    inputs:
+      bool_val:
+        type: boolean
+        required: true
+        default: true
 
 jobs:
   docs:
@@ -22,3 +27,11 @@ jobs:
 
       - name: Call handler.outputs
         run: echo ${{ steps.handler.outputs.name }}
+
+      - name: Test boolean input, if ${{ inputs.bool_val }}
+        if: ${{ inputs.bool_val }}
+        run: echo ${{ inputs.bool_val }}
+
+      - name: Test boolean input, if inputs.bool_val
+        if: inputs.bool_val
+        run: echo ${{ inputs.bool_val }}
