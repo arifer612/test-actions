@@ -24,12 +24,12 @@ jobs:
       - name: Test logic env.CHANGES == 0
         if: ${{ always() }}
         run: |
-          if [[ ${{ env.CHANGES == 0 ]]; then exit 0; else exit 1; fi
+          if [[ ${{ env.CHANGES }} == 0 ]]; then exit 0; else exit 1; fi
 
       - name: Test logic env.CHANGES == "0"
         if: ${{ always() }}
         run: |
-          if [[ ${{\env.CHANGES == "0" ]]; then exit 0; else exit 1; fi
+          if [[ ${{ env.CHANGES }} == "0" ]]; then exit 0; else exit 1; fi
 
       - name: Test logic ( env.CHANGES == 0 )
         if: ( ${{ env.CHANGES }} == 0 )
