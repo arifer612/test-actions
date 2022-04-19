@@ -31,7 +31,7 @@ jobs:
 
     - name: Set an environment TEST=1
       run: |
-        cat ksdjf;asdjfk
+        cat ksdjf;asdjfk &> /dev/null
         echo "TEST=$?" >> $GITHUB_ENV
 
     - name: Test logic if ( {{ env.TEST }} != 0 )
