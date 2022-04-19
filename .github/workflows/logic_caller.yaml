@@ -52,6 +52,6 @@ jobs:
       run: echo yay
 
     - name: Test logic if both are ${{ env.TEST }} && ${{ inputs.bool_var }}
-      if: ${{ env.TEST }} && ${{ inputs.bool_var }}
+      if: ${{ ${{ env.TEST }} && ${{ inputs.bool_var }} }}
       run: echo yay
 
