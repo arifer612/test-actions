@@ -30,10 +30,13 @@ jobs:
       - name: Echo empty string variable
         run: echo ${{ steps.handler.outputs.name }}
 
-      - name: Test boolean input, if ${{ inputs.bool_val == 'true' }}
-        if: ${{ inputs.bool_val == 'true' }}
+      - name: Echo boolean input
         run: echo ${{ inputs.bool_val }}
 
-      - name: Test boolean input, if inputs.bool_val == 'true'
-        if: inputs.bool_val == 'true'
+      - name: Test boolean input, if ${{ inputs.bool_val == true }}
+        if: ${{ inputs.bool_val == true }}
+        run: echo ${{ inputs.bool_val }}
+
+      - name: Test boolean input, if inputs.bool_val == true
+        if: inputs.bool_val == true
         run: echo ${{ inputs.bool_val }}
