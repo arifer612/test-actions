@@ -35,23 +35,22 @@ jobs:
         echo "TEST=$?" >> $GITHUB_ENV
       shell: bash -x {0}
 
-    - name: Test logic if ( {{ env.TEST }} != 0 )
+    - name: Will work
       if: ( ${{ env.TEST }} != 0 )
       run: echo yay
 
-    - name: Test logic if ${{ env.TEST }}
+    - name: Will work
       if: ${{ env.TEST }}
       run: echo yay
 
-    - name: Test logic if env.TEST
+    - name: Will work
       if: env.TEST
       run: echo yay
 
-    - name: Test logic if ( {{ env.TEST }} != 0 && {{ inputs.booL_var }} )
-      if: ( ${{ env.TEST }} != 0 && ${{ inputs.bool_var }} == 'true' )
-      run: echo yay
-
-    - name: Test logic if both are ${{ env.TEST && inputs.bool_var }}
+    - name: Works if bool_var is True
       if: ${{ env.TEST && inputs.bool_var }}
       run: echo yay
 
+    - name: Works if bool_var is False
+      if: ${{ env.TEST && ! inputs.bool_var }}
+      run: echo yay
