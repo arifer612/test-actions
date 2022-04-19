@@ -20,20 +20,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Handle variables beforehand
+      - name: Handle empty variables
         id: handler
         run: >
           if [ ${{ inputs.name }} ]; then
           echo "::set-output name=name::${{ inputs.name }}"; else
           echo "::set-output name=name::${{ github.actor }}"; fi
 
-      - name: Call handler.outputs
+      - name: Echo empty string variable
         run: echo ${{ steps.handler.outputs.name }}
 
-      - name: Test boolean input, if ${{ inputs.bool_val }}
-        if: ${{ inputs.bool_val }}
+      - name: Test boolean input, if ${{ inputs.bool_val == 'true' }}
+        if: ${{ inputs.bool_val == 'true' }}
         run: echo ${{ inputs.bool_val }}
 
-      - name: Test boolean input, if inputs.bool_val
-        if: inputs.bool_val
+      - name: Test boolean input, if inputs.bool_val == 'true'
+        if: inputs.bool_val == 'true'
         run: echo ${{ inputs.bool_val }}
