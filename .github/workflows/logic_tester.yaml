@@ -42,7 +42,7 @@ jobs:
   bool:
     runs-on: ubuntu-latest
 
-      steps:
+    steps:
     
       - name: Echo boolean input
         run: echo ${{ github.event.inputs.bool_val }}
