@@ -1,0 +1,42 @@
+name: Test logic
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check for changes
+        run: |
+          git diff-index --quiet HEAD
+          echo "CHANGES=$?" >> $GITHUB_ENV
+
+      - name: Verbose check for changes
+        run: |
+          git diff-index --quiet HEAD
+          echo "$?"
+
+      - name: Test logic env.CHANGES == 0
+        if: ${{ always() }}
+        run: |
+          if [[ ${{ env.CHANGES == 0 ]]; then exit 0; else exit 1; fi
+
+      - name: Test logic env.CHANGES == "0"
+        if: ${{ always() }}
+        run: |
+          if [[ ${{\env.CHANGES == "0" ]]; then exit 0; else exit 1; fi
+
+      - name: Test logic ( env.CHANGES == 0 )
+        if: ( ${{ env.CHANGES }} == 0 )
+        run: |
+          echo "Yay"
+
+      - name: Test logic ( env.CHANGES == '0' )
+        if: ( ${{ env.CHANGES }} == '0' }} )
+        run: |
+          echo "Yay"
