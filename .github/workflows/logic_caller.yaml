@@ -1,0 +1,29 @@
+name: Logic tester for workflow calls
+
+on:
+  workflow_call:
+    inputs:
+      bool_var:
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  runs-on: ubuntu-latest
+
+  steps:
+
+    - name: echo inputs.bool_var
+      run: echo ${{ inputs.bool_var }}
+
+    - name: Test github.event.inputs.bool_var
+      run: echo ${{ github.event.inputs.bool_var }}
+
+    - name: Test logic
+      if: ${{ inputs.bool_var == false }}
+      run: echo yay
+
+    - name: Test logic
+      if: inputs.bool_var
+      run: echo yay
+  

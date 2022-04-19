@@ -4,15 +4,6 @@ on:
   push:
     branches:
       - main
-    inputs:
-      name:
-        type: string
-        required: false
-        default: test-name
-      bool_val:
-        type: boolean
-        required: false
-        default: false
   workflow_dispatch:
     inputs:
       name:
@@ -58,3 +49,13 @@ jobs:
       - name: Will succeed if manual dispatch
         if: ( github.event.inputs.bool_val == 'false' )
         run: echo yay
+
+  call_bool_true:
+    uses: ./.github/workflows/logic_caller.yaml
+    with:
+      bool_var: true
+
+  call_bool_false:
+    uses: ./.github/workflows/logic_caller.yaml
+    with:
+      bool_var: false
