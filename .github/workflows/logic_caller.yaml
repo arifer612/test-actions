@@ -29,7 +29,7 @@ jobs:
       if: inputs.bool_var
       run: echo yay
 
-    - name: Set an environment TEST=1
+    - name: Set an environment TEST=127
       run: |
         cat ksdjf;asdjfk &> /dev/null
         echo "TEST=$?" >> $GITHUB_ENV
@@ -48,10 +48,10 @@ jobs:
       run: echo yay
 
     - name: Test logic if ( {{ env.TEST }} != 0 && {{ inputs.booL_var }} )
-      if: ( ${{ env.TEST }} != 0 && {{ inputs.bool_var }} )
+      if: ( ${{ env.TEST }} != 0 && ${{ inputs.bool_var }} )
       run: echo yay
 
-    - name: a
+    - name: Test logic if both are True
       if: ( ${{ env.TEST }} && ${{ inputs.bool_var }} )
       run: echo yay
 
