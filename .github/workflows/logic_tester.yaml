@@ -1,13 +1,15 @@
 name: Test logic
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       name:
         type: string
         required: false
         default: ''
-    inputs:
       bool_val:
         type: boolean
         required: true
