@@ -54,3 +54,11 @@ jobs:
     - name: Works if bool_var is False
       if: ${{ env.TEST && ! inputs.bool_var }}
       run: echo yay
+
+    - name: Works if bool_var is True
+      if: >-
+        ${{
+        ( env.TEST && inputs.bool_var ) &&
+        ! ( env.TEST && ! inputs.bool_var )
+        }}
+      run: echo yay
