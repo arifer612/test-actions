@@ -9,22 +9,48 @@ on:
         default: false
 
 jobs:
-  bools:
+
+  bool:
     runs-on: ubuntu-latest
 
     steps:
 
-    - name: echo inputs.bool_var
+    - name: Will return bool_var
       run: echo ${{ inputs.bool_var }}
 
-    - name: Test github.event.inputs.bool_var
+    - name: Will return nothing
       run: echo ${{ github.event.inputs.bool_var }}
 
-    - name: Test logic
+    - name: Will work if bool_var is false
       if: ${{ inputs.bool_var == false }}
       run: echo yay
 
-    - name: Test logic
+    - name: Will work if bool_var is true
       if: inputs.bool_var
+      run: echo yay
+
+    - name: Set an environment TEST=1
+      run: |
+        cat ksdjf;asdjfk
+        echo "TEST=$?" >> $GITHUB_ENV
+
+    - name: Test logic if ( {{ env.TEST }} != 0 )
+      if: ( ${{ env.TEST }} != 0 )
+      run: echo yay
+
+    - name: Test logic if ${{ env.TEST }}
+      if: ${{ env.TEST }}
+      run: echo yay
+
+    - name: Test logic if env.TEST
+      if: env.TEST
+      run: echo yay
+
+    - name: Test logic if ( {{ env.TEST }} != 0 && {{ inputs.booL_var }} )
+      if: ( ${{ env.TEST }} != 0 && {{ inputs.bool_var }} )
+      run: echo yay
+
+    - name: a
+      if: ( ${{ env.TEST }} && ${{ inputs.bool_var }} )
       run: echo yay
 
