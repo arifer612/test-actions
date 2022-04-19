@@ -48,10 +48,10 @@ jobs:
       run: echo yay
 
     - name: Test logic if ( {{ env.TEST }} != 0 && {{ inputs.booL_var }} )
-      if: ( ${{ env.TEST }} != 0 && ${{ inputs.bool_var }} )
+      if: ( ${{ env.TEST }} != 0 && ${{ inputs.bool_var }} == 'true' )
       run: echo yay
 
     - name: Test logic if both are True
-      if: ( ${{ env.TEST }} && ${{ inputs.bool_var }} )
+      if: ( ${{ env.TEST }} && ${{ inputs.bool_var }} == 'true' )
       run: echo yay
 
