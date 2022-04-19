@@ -6,15 +6,19 @@ on:
       name:
         type: string
         required: false
-        default: ${{ github.actor }}
+        default: ''
 
 jobs:
   docs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Call github.actor
-        run: echo ${{ github.actor }}
+      - name: Handle variables beforehand
+        id: handler
+        run: >
+          if [[ ${{ inputs.name }} ]]; then
+          echo "::set-output name=name::${{ inputs.name }}"; else
+          echo "::set-output name=name::${{ github.actor }}"; fi
 
-      - name: Call inputs.name
-        run: echo ${{ inputs.name }}
+      - name: Call handler.outputs
+        run: echo ${{ steps.handler.outputs.name }}
