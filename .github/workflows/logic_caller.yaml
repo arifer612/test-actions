@@ -13,17 +13,17 @@ jobs:
 
   steps:
 
-    - name: echo inputs.bool_var
-      run: echo ${{ inputs.bool_var }}
+  - name: echo inputs.bool_var
+    run: echo ${{ inputs.bool_var }}
 
-    - name: Test github.event.inputs.bool_var
-      run: echo ${{ github.event.inputs.bool_var }}
+  - name: Test github.event.inputs.bool_var
+    run: echo ${{ github.event.inputs.bool_var }}
 
-    - name: Test logic
-      if: ${{ inputs.bool_var == false }}
-      run: echo yay
+  - name: Test logic
+    if: ${{ inputs.bool_var == false }}
+    run: echo yay
 
-    - name: Test logic
-      if: inputs.bool_var
-      run: echo yay
-  
+  - name: Test logic
+    if: inputs.bool_var
+    run: echo yay
+
