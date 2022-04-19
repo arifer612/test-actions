@@ -33,7 +33,7 @@ jobs:
       run: |
         cat ksdjf;asdjfk &> /dev/null
         echo "TEST=$?" >> $GITHUB_ENV
-      shell: bash
+      shell: bash -x {0}
 
     - name: Test logic if ( {{ env.TEST }} != 0 )
       if: ( ${{ env.TEST }} != 0 )
