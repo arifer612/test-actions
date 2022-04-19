@@ -13,7 +13,6 @@ on:
       bool_val:
         type: boolean
         required: true
-        default: true
 
 jobs:
   docs:
