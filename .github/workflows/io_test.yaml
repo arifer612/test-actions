@@ -1,0 +1,26 @@
+name: Test I/O
+
+on:
+  workflow_call:
+    inputs:
+      python-versions:
+        type: string
+        required: false
+        default: '["3.10", "3.9"]'
+
+jobs:
+  runs-on: ubuntu-latest
+  strategy:
+    matrix:
+      python-version: ${{ fromJSON(inputs.python-version) }}
+
+  steps:
+
+  - name: Setup ${{ matrix.python-version }}
+    uses: actions/setup-python@v3
+    with:
+      python-version: ${{ matrix.python-version }}
+
+  - name: Save version details to file
+    run: |
+      echo "${{ matrix.python-version }}" >> py_ver

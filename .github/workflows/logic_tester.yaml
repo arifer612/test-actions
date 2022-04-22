@@ -16,46 +16,59 @@ on:
         default: false
 
 jobs:
-  str:
-    runs-on: ubuntu-latest
+  # str:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Handle empty variables
-        id: handler
-        run: >
-          if [ ${{ inputs.name }} ]; then
-          echo "::set-output name=name::${{ inputs.name }}"; else
-          echo "::set-output name=name::${{ github.actor }}"; fi
+  #   steps:
+  #     - name: Handle empty variables
+  #       id: handler
+  #       run: >
+  #         if [ ${{ inputs.name }} ]; then
+  #         echo "::set-output name=name::${{ inputs.name }}"; else
+  #         echo "::set-output name=name::${{ github.actor }}"; fi
 
-      - name: Will be 'test-name' if pushed, github.actor if manual dispatch with no input
-        run: echo ${{ steps.handler.outputs.name }}
+  #     - name: Will be 'test-name' if pushed, github.actor if manual dispatch with no input
+  #       run: echo ${{ steps.handler.outputs.name }}
 
-  bool:
-    runs-on: ubuntu-latest
+  # bool:
+  #   runs-on: ubuntu-latest
 
-    steps:
+  #   steps:
     
-      - name: Echo boolean input
-        run: echo ${{ github.event.inputs.bool_val }}
+  #     - name: Echo boolean input
+  #       run: echo ${{ github.event.inputs.bool_val }}
 
-      - name: Will succeed if manual dispatch
-        if: ${{ github.event.inputs.bool_val == 'false' }}
-        run: echo yay
+  #     - name: Will succeed if manual dispatch
+  #       if: ${{ github.event.inputs.bool_val == 'false' }}
+  #       run: echo yay
 
-      - name: Will succeed if manual dispatch
-        if: github.event.inputs.bool_val == 'false'
-        run: echo yay
+  #     - name: Will succeed if manual dispatch
+  #       if: github.event.inputs.bool_val == 'false'
+  #       run: echo yay
 
-      - name: Will succeed if manual dispatch
-        if: ( github.event.inputs.bool_val == 'false' )
-        run: echo yay
+  #     - name: Will succeed if manual dispatch
+  #       if: ( github.event.inputs.bool_val == 'false' )
+  #       run: echo yay
 
-  call_bool_true:
-    uses: ./.github/workflows/logic_caller.yaml
+  # call_bool_true:
+  #   uses: ./.github/workflows/logic_caller.yaml
+  #   with:
+  #     bool_var: true
+
+  # call_bool_false:
+  #   uses: ./.github/workflows/logic_caller.yaml
+  #   with:
+  #     bool_var: false
+
+  io:
+    uses: ./io_test.yaml
     with:
-      bool_var: true
+      python-versions: '["3.10", "3.9", "3.8"]'
 
-  call_bool_false:
-    uses: ./.github/workflows/logic_caller.yaml
-    with:
-      bool_var: false
+  view_file:
+    runs-on: ubuntu-latest
+    needs: io
+    steps:
+    - name: View file
+      run: |
+        cat py_ver
