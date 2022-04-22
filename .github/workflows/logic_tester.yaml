@@ -61,7 +61,7 @@ jobs:
   #     bool_var: false
 
   io:
-    uses: ./io_test.yaml
+    uses: ./io_test.yaml@main
     with:
       python-versions: '["3.10", "3.9", "3.8"]'
 
