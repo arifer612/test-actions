@@ -63,7 +63,7 @@ jobs:
   io:
     uses: ./.github/workflows/io_test.yaml
     with:
-      python-versions: '[\"3.10\", \"3.9\", \"3.8\"]'
+      python-versions: "[\"3.10\", \"3.9\", \"3.8\"]"
 
   view_file:
     runs-on: ubuntu-latest
