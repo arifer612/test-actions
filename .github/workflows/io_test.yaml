@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ${{ fromJSON(inputs.python-version) }}
+        python-version: ${{ fromJSON(inputs.python-versions) }}
 
     steps:
 
