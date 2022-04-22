@@ -6,7 +6,7 @@ on:
       python-versions:
         type: string
         required: false
-        default: '["3.10", "3.9"]'
+        default: '[\"3.10\", \"3.9\"]'
 
 jobs:
   test-io:
