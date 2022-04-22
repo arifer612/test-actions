@@ -9,18 +9,19 @@ on:
         default: '["3.10", "3.9"]'
 
 jobs:
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      python-version: ${{ fromJSON(inputs.python-version) }}
+  test-io:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ${{ fromJSON(inputs.python-version) }}
 
-  steps:
+    steps:
 
-  - name: Setup ${{ matrix.python-version }}
-    uses: actions/setup-python@v3
-    with:
-      python-version: ${{ matrix.python-version }}
+    - name: Setup ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
 
-  - name: Save version details to file
-    run: |
-      echo "${{ matrix.python-version }}" >> py_ver
+    - name: Save version details to file
+      run: |
+        echo "${{ matrix.python-version }}" >> py_ver
